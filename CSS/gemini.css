@@ -1,56 +1,172 @@
+/* Variables de color */
+:root {
+    --accent: #a3e635; /* Verde Indian Wells */
+    --glass: rgba(255, 255, 255, 0.1);
+    --bg-dark: #050505;
+}
+
+/* Reset general */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
 body {
-    margin: 0;
-    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Fondo con imagen y overlay oscuro */
+.main-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                url('https://images.unsplash.com/photo-1595435063998-ee6d1183bc6a?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* Navegación Estilo Glass */
+.glass-nav {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 8%; 
+    background: rgba(0,0,0,0.8); 
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo { font-weight: 700; letter-spacing: 1px; }
+.logo span { color: var(--accent); font-weight: 900; }
+
+.live-indicator {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Contenedor de Tarjetas */
+.matches-grid {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding: 40px 20px; 
+    gap: 30px;
+}
+
+/* Tarjeta Individual */
+.match-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 35px;
+    width: 100%; 
+    max-width: 750px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.match-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(163, 230, 53, 0.3);
+}
+
+.stadium-tag {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Sección de Jugadores */
+.players-vs { 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.player { 
+    text-align: center; 
+    flex: 1; 
+}
+
+/* Círculo de la Foto */
+.photo-clip {
+    width: 130px; 
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    margin: 0 auto 15px;
+    overflow: hidden;
+    background: #1a1a1a;
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1a1a1a;
-    transition: background 0.5s ease;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    text-align: center;
-    color: white;
-    width: 320px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.photo-clip img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+    object-position: top;
+    display: block;
 }
 
-.box {
-    width: 100%;
-    height: 120px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+/* Nombres y Marcadores */
+.name { 
+    font-weight: 700; 
+    display: block; 
+    margin-bottom: 12px; 
+    font-size: 1.2rem; 
+    letter-spacing: 0.5px;
 }
 
-button {
-    background: #4facfe;
-    color: white;
-    border: none;
-    padding: 12px 15px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
+.sets { 
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 1.8rem; 
+    letter-spacing: 8px; 
     font-weight: bold;
-    transition: all 0.3s ease;
 }
 
-button:hover {
-    background: #00f2fe;
-    transform: translateY(-2px);
+.active { 
+    color: var(--accent); 
+    text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
 }
 
-#code-text {
-    background: rgba(0,0,0,0.3);
-    padding: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.8rem;
-    word-break: break-all;
-    border-radius: 5px;
+.vs-divider { 
+    font-style: italic; 
+    opacity: 0.15; 
+    font-size: 2.5rem; 
+    font-weight: 900; 
+    padding: 0 20px;
+}
+
+/* Info inferior */
+.match-info {
+    text-align: center; 
+    margin-top: 30px; 
+    color: var(--accent);
+    font-size: 0.9rem; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
